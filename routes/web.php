@@ -1,5 +1,8 @@
 <?php
 
+// Author: Darwin Plata
+// Date: Fri Jul 22, 2022
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/points', 'App\Http\Controllers\PointController@index');
+Route::get('/points/{id}', 'App\Http\Controllers\PointController@show');
+Route::post('/points/', 'App\Http\Controllers\PointController@save');
+Route::delete('/points/', 'App\Http\Controllers\PointController@delete');
+Route::delete('/points/', 'App\Http\Controllers\PointController@update');
+
+
