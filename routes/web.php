@@ -20,10 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/points', 'App\Http\Controllers\PointController@index');
-Route::get('/points/{id}', 'App\Http\Controllers\PointController@show');
-Route::post('/points/', 'App\Http\Controllers\PointController@save');
-Route::delete('/points/', 'App\Http\Controllers\PointController@delete');
-Route::delete('/points/', 'App\Http\Controllers\PointController@update');
-
-
+Route::get('/points/', 'App\Http\Controllers\PointController@index');
+Route::get('/points/{point}', 'App\Http\Controllers\PointController@show');
+Route::post('/points/', 'App\Http\Controllers\PointController@store');
+Route::post('/points/{point}', 'App\Http\Controllers\PointController@update');
+Route::delete('/points/{point}', 'App\Http\Controllers\PointController@delete');

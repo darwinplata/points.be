@@ -18,7 +18,7 @@ class PointController extends Controller
     public function index()
     {
         // Return all points
-        $pointRow = Point::all();
+        $pointRow  = Point::all();
         return response()->json($pointRow);
     }
 
@@ -30,9 +30,10 @@ class PointController extends Controller
      */
     public function show(Point $point)
     {
-        // Return a particular point
+        // Returns a particular point
         $pointRow = new Point;
-        return $pointRow->find($point);
+        $results = $pointRow->where('id', $point)->first();
+        return response()->json($point);  
     }
 
     /**
@@ -43,13 +44,14 @@ class PointController extends Controller
      */
     public function store(Request $request)
     {
-        // Create a new point
-        $pointRow = new Point;
+        /* Create a new point */
+        $pointRow = new Point; 
+
         $pointRow->name = $request->name;
         $pointRow->x = $request->x;
         $pointRow->y = $request->y;
         $pointRow->save();
-        return response()->json("Row created successfully");
+        return response()->json("Row created successfully");   
     }
 
     /**
@@ -61,13 +63,14 @@ class PointController extends Controller
      */
     public function update(Request $request, Point $point)
     {
-        // Update an existing point
-        $pointRow = Point::find($point);
+        /* Update an existing point */
+        $pointRow = new Point;
+        $pointRow->where('id', $point)->first();
         $pointRow->name = $request->name;
         $pointRow->x = $request->x;
         $pointRow->y = $request->y;
         $pointRow->save();
-        return response()->json("Row updated successfully");
+        return response()->json("Row updated successfully"); 
     }
 
     /**
@@ -78,9 +81,10 @@ class PointController extends Controller
      */
     public function destroy(Point $point)
     {
-        // Deletes an existing point
-        $pointRow = Point::find($point);
+        /* Deletes an existing point */
+        $pointRow = new Point;
+        $pointRow->where('id', $point)->first();
         $pointRow->delete(); 
-        return response()->json("Row deleted successfully");
+        return response()->json("Row deleted successfully"); 
     }
 }
